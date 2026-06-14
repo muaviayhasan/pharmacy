@@ -56,6 +56,10 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     // Ledger
     Route::view('/ledger', 'ledger.index')->name('ledger.index');
 
+    // Purchases
+    Route::get('/purchases', [\App\Http\Controllers\PurchaseController::class, 'index'])->name('purchases.index');
+    Route::view('/purchases/create', 'purchases.create')->name('purchases.create');
+
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
