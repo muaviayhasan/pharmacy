@@ -2,6 +2,5 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'dashboard')->name('dashboard');
+Route::view('/dashboard', 'dashboard');
