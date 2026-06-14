@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\CriticalAlertRaised;
 use App\Models\Alert;
 use App\Models\Customer;
 use App\Models\MedicineBatch;
@@ -17,7 +18,7 @@ class AlertService
      */
     public function generate(): int
     {
-        return DB::transaction(function () {
+        $count = DB::transaction(function () {
             Alert::whereIn('status', ['unread', 'read', 'pending', 'in_progress'])->delete();
 
             $count = 0;
@@ -103,5 +104,13 @@ class AlertService
 
             return $count;
         });
+
+        // Notify connected clients in real time when critical alerts exist.
+        $criticals = Alert::where('priority', 'critical')->where('status', 'unread')->get();
+        if ($criticals->isNotEmpty()) {
+            CriticalAlertRaised::dispatch($criticals->count(), $criticals->first()->title);
+        }
+
+        return $count;
     }
 }

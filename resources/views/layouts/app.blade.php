@@ -32,6 +32,24 @@
 
     @yield('fab')
 
+    {{-- Realtime critical-alert toast (broadcast over Reverb) --}}
+    <div id="critical-alert-toast" class="hidden fixed top-20 right-8 z-[60] bg-error text-on-error px-md py-sm rounded-lg shadow-xl flex items-center gap-sm max-w-sm">
+        <span class="material-symbols-outlined">warning</span>
+        <span id="critical-alert-text" class="text-body-sm"></span>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (! window.Echo) return;
+            window.Echo.channel('alerts').listen('.CriticalAlertRaised', function (e) {
+                var toast = document.getElementById('critical-alert-toast');
+                document.getElementById('critical-alert-text').textContent =
+                    e.count + ' critical alert' + (e.count > 1 ? 's' : '') + (e.latest ? ': ' + e.latest : '');
+                toast.classList.remove('hidden');
+                setTimeout(function () { toast.classList.add('hidden'); }, 8000);
+            });
+        });
+    </script>
+
     @livewireScripts
     @stack('scripts')
 </body>

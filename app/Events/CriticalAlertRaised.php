@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Events;
+
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+
+class CriticalAlertRaised implements ShouldBroadcast
+{
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public function __construct(public int $count, public ?string $latest = null) {}
+
+    public function broadcastOn(): Channel
+    {
+        return new Channel('alerts');
+    }
+
+    public function broadcastAs(): string
+    {
+        return 'CriticalAlertRaised';
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function broadcastWith(): array
+    {
+        return ['count' => $this->count, 'latest' => $this->latest];
+    }
+}
