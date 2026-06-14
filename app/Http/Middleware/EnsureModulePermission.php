@@ -40,6 +40,7 @@ class EnsureModulePermission
         'reports.' => 'view reports',
         'users.' => 'view user_management',
         'roles.' => 'view roles_permissions',
+        'settings.' => 'view settings',
     ];
 
     public function handle(Request $request, Closure $next): Response

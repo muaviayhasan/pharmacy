@@ -112,6 +112,10 @@ Route::middleware(['auth', 'post.login', 'module.permission'])->group(function (
     // Ledger
     Route::view('/ledger', 'ledger.index')->name('ledger.index');
 
+    // Settings
+    Route::get('/settings', [\App\Http\Controllers\SettingController::class, 'index'])->name('settings.index');
+    Route::put('/settings', [\App\Http\Controllers\SettingController::class, 'update'])->name('settings.update');
+
     // Reports
     Route::get('/reports', [\App\Http\Controllers\ReportController::class, 'index'])->name('reports.index');
     Route::get('/reports/export', [\App\Http\Controllers\ReportController::class, 'export'])->name('reports.export');
