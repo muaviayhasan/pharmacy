@@ -83,6 +83,14 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     Route::get('/sales', [\App\Http\Controllers\SaleController::class, 'index'])->name('sales.index');
     Route::get('/sales/{sale}', [\App\Http\Controllers\SaleController::class, 'show'])->name('sales.show');
 
+    // Sale Returns
+    Route::get('/sale-returns', [\App\Http\Controllers\SaleReturnController::class, 'index'])->name('sale-returns.index');
+    Route::view('/sale-returns/create', 'sale-returns.create')->name('sale-returns.create');
+
+    // Purchase Returns
+    Route::get('/purchase-returns', [\App\Http\Controllers\PurchaseReturnController::class, 'index'])->name('purchase-returns.index');
+    Route::view('/purchase-returns/create', 'purchase-returns.create')->name('purchase-returns.create');
+
     // Ledger
     Route::view('/ledger', 'ledger.index')->name('ledger.index');
 

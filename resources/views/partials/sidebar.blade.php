@@ -9,6 +9,8 @@
         ['icon' => 'medication', 'label' => 'Medicines', 'route' => 'medicines.index'],
         ['icon' => 'shopping_cart', 'label' => 'Purchases', 'route' => 'purchases.index'],
         ['icon' => 'payments', 'label' => 'Sales', 'route' => 'sales.index'],
+        ['icon' => 'assignment_return', 'label' => 'Sale Returns', 'route' => 'sale-returns.index'],
+        ['icon' => 'keyboard_return', 'label' => 'Purchase Returns', 'route' => 'purchase-returns.index'],
         ['icon' => 'swap_horiz', 'label' => 'Stock Transfers', 'route' => 'stock-transfers.index'],
         ['icon' => 'tune', 'label' => 'Stock Adjustments', 'route' => 'stock-adjustments.index'],
         ['icon' => 'event_busy', 'label' => 'Expiry Management', 'route' => 'expiry.index'],
