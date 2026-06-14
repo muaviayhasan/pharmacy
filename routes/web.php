@@ -79,6 +79,10 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     Route::resource('customers', \App\Http\Controllers\CustomerController::class);
     Route::resource('suppliers', \App\Http\Controllers\SupplierController::class);
 
+    // Sales
+    Route::get('/sales', [\App\Http\Controllers\SaleController::class, 'index'])->name('sales.index');
+    Route::get('/sales/{sale}', [\App\Http\Controllers\SaleController::class, 'show'])->name('sales.show');
+
     // Ledger
     Route::view('/ledger', 'ledger.index')->name('ledger.index');
 
