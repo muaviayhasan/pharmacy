@@ -42,6 +42,7 @@ class EnsureModulePermission
         'roles.' => 'view roles_permissions',
         'settings.' => 'view settings',
         'alerts.' => 'view alerts',
+        'audit-logs.' => 'access audit logs',
     ];
 
     public function handle(Request $request, Closure $next): Response

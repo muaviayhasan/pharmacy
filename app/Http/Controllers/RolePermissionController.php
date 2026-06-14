@@ -45,6 +45,12 @@ class RolePermissionController extends Controller
 
         $role->syncPermissions($permissions);
 
+        \App\Support\Audit::log('roles_permissions', 'update', 'Updated permissions for role '.$role->name, [
+            'reference' => $role,
+            'new' => ['permissions' => $permissions],
+            'risk' => 'high',
+        ]);
+
         return redirect()->route('roles.index')->with('status', 'Permissions updated for the "'.Str::headline($role->name).'" role.');
     }
 

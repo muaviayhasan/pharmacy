@@ -105,6 +105,11 @@ class ExpenseService
             }
 
             $expense->update(['approval_status' => 'approved', 'approved_by' => $approver->id]);
+
+            \App\Support\Audit::log('expenses', 'approve', "Approved expense {$expense->expense_no} (Rs. ".number_format($total, 2).')', [
+                'reference' => $expense,
+                'risk' => 'medium',
+            ]);
         });
     }
 

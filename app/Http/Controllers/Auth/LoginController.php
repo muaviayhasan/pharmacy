@@ -26,6 +26,11 @@ class LoginController extends Controller
         ]);
 
         if (! Auth::attempt($credentials, $request->boolean('remember'))) {
+            \App\Support\Audit::log('authentication', 'failed_login', 'Failed login for '.$credentials['email'], [
+                'risk' => 'medium',
+                'status' => 'failed',
+            ]);
+
             throw ValidationException::withMessages([
                 'email' => 'These credentials do not match our records.',
             ]);
@@ -50,6 +55,8 @@ class LoginController extends Controller
             'last_login_ip' => $request->ip(),
         ])->save();
 
+        \App\Support\Audit::log('authentication', 'login', 'Signed in', ['reference' => $user]);
+
         // Two-factor: send a code and gate the session until verified.
         if ($user->two_factor_enabled) {
             session(['otp.verified' => false]);
@@ -65,6 +72,7 @@ class LoginController extends Controller
 
     public function logout(Request $request): RedirectResponse
     {
+        \App\Support\Audit::log('authentication', 'logout', 'Signed out');
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

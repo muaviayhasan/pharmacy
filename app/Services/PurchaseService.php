@@ -164,6 +164,11 @@ class PurchaseService
             ]);
             $supplier->update(['current_balance' => $newPayable]);
 
+            \App\Support\Audit::log('purchases', 'create', "Purchase {$purchase->purchase_no} for Rs. ".number_format($grandTotal, 2), [
+                'reference' => $purchase,
+                'risk' => 'medium',
+            ]);
+
             // Immediate payment, if any, reduces the payable.
             if ($paid > 0) {
                 $this->ledger->recordSupplierPayment(

@@ -179,6 +179,11 @@ class SaleService
             $sale->load('creator', 'items');
             SaleCompleted::dispatch($sale);
 
+            \App\Support\Audit::log('sales', 'create', "Sale {$sale->sale_no} for Rs. ".number_format($grandTotal, 2), [
+                'reference' => $sale,
+                'risk' => $isCredit ? 'medium' : 'low',
+            ]);
+
             return $sale;
         });
     }

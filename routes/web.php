@@ -112,6 +112,9 @@ Route::middleware(['auth', 'post.login', 'module.permission'])->group(function (
     // Ledger
     Route::view('/ledger', 'ledger.index')->name('ledger.index');
 
+    // Audit Logs
+    Route::get('/audit-logs', [\App\Http\Controllers\AuditLogController::class, 'index'])->name('audit-logs.index');
+
     // Alerts
     Route::get('/alerts', [\App\Http\Controllers\AlertController::class, 'index'])->name('alerts.index');
     Route::post('/alerts/generate', [\App\Http\Controllers\AlertController::class, 'generate'])->name('alerts.generate');

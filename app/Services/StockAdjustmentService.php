@@ -90,6 +90,11 @@ class StockAdjustmentService
             }
 
             $adjustment->update(['status' => 'completed', 'approved_by' => $approver->id]);
+
+            \App\Support\Audit::log('stock_adjustments', 'approve', "Approved adjustment {$adjustment->adjustment_no}", [
+                'reference' => $adjustment,
+                'risk' => 'high',
+            ]);
         });
     }
 

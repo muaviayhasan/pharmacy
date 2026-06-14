@@ -32,6 +32,7 @@
         ['icon' => 'group', 'label' => 'Users', 'route' => 'users.index', 'perm' => 'view user_management'],
         ['icon' => 'admin_panel_settings', 'label' => 'Roles & Permissions', 'route' => 'roles.index', 'perm' => 'view roles_permissions'],
         ['icon' => 'notifications_active', 'label' => 'Alerts', 'route' => 'alerts.index', 'perm' => 'view alerts'],
+        ['icon' => 'fact_check', 'label' => 'Audit Logs', 'route' => 'audit-logs.index', 'perm' => 'access audit logs'],
         ['icon' => 'settings', 'label' => 'Settings', 'route' => 'settings.index', 'perm' => 'view settings'],
     ], fn ($i) => $can($i['perm'] ?? null));
 
