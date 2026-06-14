@@ -72,7 +72,8 @@
             </a>
         @endforeach
 
-        <div class="px-md pt-lg flex items-center gap-md">
+        <a href="{{ \Illuminate\Support\Facades\Route::has('profile.edit') ? route('profile.edit') : '#' }}"
+           class="px-md pt-lg flex items-center gap-md hover:opacity-90 transition-opacity">
             <div class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim bg-primary-container flex items-center justify-center text-white font-bold text-label-md uppercase">
                 {{ $initials ?: 'PC' }}
             </div>
@@ -80,6 +81,6 @@
                 <p class="text-label-md text-on-primary-fixed font-bold">{{ $userName }}</p>
                 <p class="text-[10px] text-surface-variant uppercase tracking-tighter">{{ $userRole }}</p>
             </div>
-        </div>
+        </a>
     </div>
 </aside>

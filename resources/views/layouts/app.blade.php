@@ -22,6 +22,7 @@
 
         {{-- Scrollable Page Content --}}
         <section class="flex-1 overflow-y-auto p-margin-desktop space-y-lg bg-background">
+            @include('partials.flash')
             @yield('content')
         </section>
 
