@@ -53,6 +53,15 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     // Point of Sale
     Route::view('/pos', 'pos.index')->name('pos.index');
 
+    // POS Shifts
+    Route::get('/shifts', [\App\Http\Controllers\ShiftController::class, 'index'])->name('shifts.index');
+    Route::get('/shifts/open', [\App\Http\Controllers\ShiftController::class, 'create'])->name('shifts.create');
+    Route::post('/shifts', [\App\Http\Controllers\ShiftController::class, 'store'])->name('shifts.store');
+    Route::get('/shifts/{shift}/close', [\App\Http\Controllers\ShiftController::class, 'close'])->name('shifts.close');
+    Route::post('/shifts/{shift}/close', [\App\Http\Controllers\ShiftController::class, 'storeClose'])->name('shifts.close.store');
+    Route::post('/shifts/{shift}/approve', [\App\Http\Controllers\ShiftController::class, 'approve'])->name('shifts.approve');
+    Route::post('/shifts/{shift}/reject', [\App\Http\Controllers\ShiftController::class, 'reject'])->name('shifts.reject');
+
     // Inventory
     Route::view('/inventory', 'inventory.index')->name('inventory.index');
 

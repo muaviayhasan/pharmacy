@@ -5,6 +5,7 @@
     $mainNav = [
         ['icon' => 'dashboard', 'label' => 'Dashboard', 'route' => 'dashboard'],
         ['icon' => 'point_of_sale', 'label' => 'POS', 'route' => 'pos.index'],
+        ['icon' => 'schedule', 'label' => 'Shift Management', 'route' => 'shifts.index'],
         ['icon' => 'inventory_2', 'label' => 'Inventory', 'route' => 'inventory.index'],
         ['icon' => 'medication', 'label' => 'Medicines', 'route' => 'medicines.index'],
         ['icon' => 'shopping_cart', 'label' => 'Purchases', 'route' => 'purchases.index'],
