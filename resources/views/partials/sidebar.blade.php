@@ -2,33 +2,37 @@
     // Navigation definition. `route` is a named route; when it does not exist
     // yet the link falls back to "#" so the layout works before every screen
     // is built.
-    $mainNav = [
-        ['icon' => 'dashboard', 'label' => 'Dashboard', 'route' => 'dashboard'],
-        ['icon' => 'point_of_sale', 'label' => 'POS', 'route' => 'pos.index'],
-        ['icon' => 'schedule', 'label' => 'Shift Management', 'route' => 'shifts.index'],
-        ['icon' => 'inventory_2', 'label' => 'Inventory', 'route' => 'inventory.index'],
-        ['icon' => 'medication', 'label' => 'Medicines', 'route' => 'medicines.index'],
-        ['icon' => 'shopping_cart', 'label' => 'Purchases', 'route' => 'purchases.index'],
-        ['icon' => 'payments', 'label' => 'Sales', 'route' => 'sales.index'],
-        ['icon' => 'assignment_return', 'label' => 'Sale Returns', 'route' => 'sale-returns.index'],
-        ['icon' => 'keyboard_return', 'label' => 'Purchase Returns', 'route' => 'purchase-returns.index'],
-        ['icon' => 'swap_horiz', 'label' => 'Stock Transfers', 'route' => 'stock-transfers.index'],
-        ['icon' => 'tune', 'label' => 'Stock Adjustments', 'route' => 'stock-adjustments.index'],
-        ['icon' => 'event_busy', 'label' => 'Expiry Management', 'route' => 'expiry.index'],
-        ['icon' => 'trending_down', 'label' => 'Low Stock / Reorder', 'route' => 'low-stock.index'],
-        ['icon' => 'local_shipping', 'label' => 'Suppliers', 'route' => 'suppliers.index'],
-        ['icon' => 'groups', 'label' => 'Customers', 'route' => 'customers.index'],
-        ['icon' => 'account_balance_wallet', 'label' => 'Ledger', 'route' => 'ledger.index'],
-        ['icon' => 'receipt_long', 'label' => 'Expenses', 'route' => 'expenses.index'],
-        ['icon' => 'assessment', 'label' => 'Reports', 'route' => 'reports.index'],
-    ];
+    $user = auth()->user();
+    $can = fn (?string $perm) => ! $perm || ($user && $user->can($perm));
 
-    $bottomNav = [
-        ['icon' => 'storefront', 'label' => 'Branches', 'route' => 'branches.index'],
-        ['icon' => 'group', 'label' => 'Users', 'route' => 'users.index'],
-        ['icon' => 'notifications_active', 'label' => 'Alerts', 'route' => 'alerts.index'],
-        ['icon' => 'settings', 'label' => 'Settings', 'route' => 'settings.index'],
-    ];
+    $mainNav = array_filter([
+        ['icon' => 'dashboard', 'label' => 'Dashboard', 'route' => 'dashboard', 'perm' => 'view dashboard'],
+        ['icon' => 'point_of_sale', 'label' => 'POS', 'route' => 'pos.index', 'perm' => 'view pos'],
+        ['icon' => 'schedule', 'label' => 'Shift Management', 'route' => 'shifts.index', 'perm' => 'view shift_management'],
+        ['icon' => 'inventory_2', 'label' => 'Inventory', 'route' => 'inventory.index', 'perm' => 'view inventory'],
+        ['icon' => 'medication', 'label' => 'Medicines', 'route' => 'medicines.index', 'perm' => 'view medicines'],
+        ['icon' => 'shopping_cart', 'label' => 'Purchases', 'route' => 'purchases.index', 'perm' => 'view purchases'],
+        ['icon' => 'payments', 'label' => 'Sales', 'route' => 'sales.index', 'perm' => 'view sales'],
+        ['icon' => 'assignment_return', 'label' => 'Sale Returns', 'route' => 'sale-returns.index', 'perm' => 'view sale_returns'],
+        ['icon' => 'keyboard_return', 'label' => 'Purchase Returns', 'route' => 'purchase-returns.index', 'perm' => 'view purchase_returns'],
+        ['icon' => 'swap_horiz', 'label' => 'Stock Transfers', 'route' => 'stock-transfers.index', 'perm' => 'view stock_transfers'],
+        ['icon' => 'tune', 'label' => 'Stock Adjustments', 'route' => 'stock-adjustments.index', 'perm' => 'view stock_adjustments'],
+        ['icon' => 'event_busy', 'label' => 'Expiry Management', 'route' => 'expiry.index', 'perm' => 'view inventory'],
+        ['icon' => 'trending_down', 'label' => 'Low Stock / Reorder', 'route' => 'low-stock.index', 'perm' => 'view inventory'],
+        ['icon' => 'local_shipping', 'label' => 'Suppliers', 'route' => 'suppliers.index', 'perm' => 'view suppliers'],
+        ['icon' => 'groups', 'label' => 'Customers', 'route' => 'customers.index', 'perm' => 'view customers'],
+        ['icon' => 'account_balance_wallet', 'label' => 'Ledger', 'route' => 'ledger.index', 'perm' => 'view customer_ledger'],
+        ['icon' => 'receipt_long', 'label' => 'Expenses', 'route' => 'expenses.index', 'perm' => 'view expenses'],
+        ['icon' => 'assessment', 'label' => 'Reports', 'route' => 'reports.index', 'perm' => 'view reports'],
+    ], fn ($i) => $can($i['perm'] ?? null));
+
+    $bottomNav = array_filter([
+        ['icon' => 'storefront', 'label' => 'Branches', 'route' => 'branches.index', 'perm' => 'view branch_management'],
+        ['icon' => 'group', 'label' => 'Users', 'route' => 'users.index', 'perm' => 'view user_management'],
+        ['icon' => 'admin_panel_settings', 'label' => 'Roles & Permissions', 'route' => 'roles.index', 'perm' => 'view roles_permissions'],
+        ['icon' => 'notifications_active', 'label' => 'Alerts', 'route' => 'alerts.index', 'perm' => 'view alerts'],
+        ['icon' => 'settings', 'label' => 'Settings', 'route' => 'settings.index', 'perm' => 'view settings'],
+    ], fn ($i) => $can($i['perm'] ?? null));
 
     $renderItem = function (array $item) {
         $href = ($item['route'] && \Illuminate\Support\Facades\Route::has($item['route']))
@@ -39,7 +43,6 @@
         return [$href, $active];
     };
 
-    $user = auth()->user();
     $userName = $user?->name ?? 'Guest User';
     $userRole = $user ? \Illuminate\Support\Str::headline($user->getRoleNames()->first() ?? 'No Role') : 'System Administrator';
     $initials = \Illuminate\Support\Str::of($userName)->explode(' ')->take(2)->map(fn ($p) => \Illuminate\Support\Str::substr($p, 0, 1))->implode('');

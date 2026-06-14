@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'post.login' => EnsurePostLoginComplete::class,
+            'module.permission' => \App\Http\Middleware\EnsureModulePermission::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

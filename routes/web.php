@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
 | Application routes (require OTP verification + branch selection)
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth', 'post.login'])->group(function () {
+Route::middleware(['auth', 'post.login', 'module.permission'])->group(function () {
     Route::get('/', fn () => redirect()->route('dashboard'));
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
@@ -129,4 +129,11 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     Route::post('/users/{user}/password', [UserController::class, 'sendPasswordReset'])->name('users.password');
     Route::patch('/users/{user}/block', [UserController::class, 'toggleBlock'])->name('users.block');
     Route::resource('users', UserController::class)->except('show');
+
+    // Roles & Permissions
+    Route::get('/roles', [\App\Http\Controllers\RolePermissionController::class, 'index'])->name('roles.index');
+    Route::get('/roles/{role}/edit', [\App\Http\Controllers\RolePermissionController::class, 'edit'])->name('roles.edit');
+    Route::put('/roles/{role}', [\App\Http\Controllers\RolePermissionController::class, 'update'])->name('roles.update');
+    Route::post('/roles', [\App\Http\Controllers\RolePermissionController::class, 'store'])->name('roles.store');
+    Route::delete('/roles/{role}', [\App\Http\Controllers\RolePermissionController::class, 'destroy'])->name('roles.destroy');
 });
