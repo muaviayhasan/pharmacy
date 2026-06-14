@@ -75,6 +75,10 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     // Medicines
     Route::resource('medicines', \App\Http\Controllers\MedicineController::class);
 
+    // Customers & Suppliers (master data)
+    Route::resource('customers', \App\Http\Controllers\CustomerController::class);
+    Route::resource('suppliers', \App\Http\Controllers\SupplierController::class);
+
     // Ledger
     Route::view('/ledger', 'ledger.index')->name('ledger.index');
 
