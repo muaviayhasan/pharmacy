@@ -56,6 +56,18 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     // Inventory
     Route::view('/inventory', 'inventory.index')->name('inventory.index');
 
+    // Stock Adjustments
+    Route::get('/stock-adjustments', [\App\Http\Controllers\StockAdjustmentController::class, 'index'])->name('stock-adjustments.index');
+    Route::view('/stock-adjustments/create', 'stock-adjustments.create')->name('stock-adjustments.create');
+    Route::post('/stock-adjustments/{stockAdjustment}/approve', [\App\Http\Controllers\StockAdjustmentController::class, 'approve'])->name('stock-adjustments.approve');
+    Route::post('/stock-adjustments/{stockAdjustment}/reject', [\App\Http\Controllers\StockAdjustmentController::class, 'reject'])->name('stock-adjustments.reject');
+
+    // Stock Transfers
+    Route::get('/stock-transfers', [\App\Http\Controllers\StockTransferController::class, 'index'])->name('stock-transfers.index');
+    Route::view('/stock-transfers/create', 'stock-transfers.create')->name('stock-transfers.create');
+    Route::post('/stock-transfers/{stockTransfer}/dispatch', [\App\Http\Controllers\StockTransferController::class, 'dispatchTransfer'])->name('stock-transfers.dispatch');
+    Route::post('/stock-transfers/{stockTransfer}/receive', [\App\Http\Controllers\StockTransferController::class, 'receive'])->name('stock-transfers.receive');
+
     // Medicines
     Route::resource('medicines', \App\Http\Controllers\MedicineController::class);
 
