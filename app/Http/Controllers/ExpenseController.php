@@ -60,7 +60,12 @@ class ExpenseController extends Controller
 
     public function store(StoreExpenseRequest $request, ExpenseService $service): RedirectResponse
     {
-        $expense = $service->create(Auth::user(), $request->validated());
+        $data = $request->validated();
+        if ($request->hasFile('receipt')) {
+            $data['attachment_path'] = $request->file('receipt')->store('expense-receipts', 'public');
+        }
+
+        $expense = $service->create(Auth::user(), $data);
 
         return redirect()->route('expenses.index')->with('status', "Expense {$expense->expense_no} submitted for approval.");
     }

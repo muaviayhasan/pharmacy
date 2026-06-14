@@ -9,7 +9,7 @@
     </a>
     @include('partials.flash')
 
-    <form method="POST" action="{{ route('expenses.store') }}" class="max-w-3xl">
+    <form method="POST" action="{{ route('expenses.store') }}" enctype="multipart/form-data" class="max-w-3xl">
         @csrf
         <div class="bg-white rounded-xl border border-outline-variant custom-shadow overflow-hidden">
             <div class="bg-surface-container-low px-md py-sm border-b border-outline-variant">
@@ -57,6 +57,11 @@
                         <option value="">None</option>
                         @foreach ($accounts as $a)<option value="{{ $a->id }}" @selected((string) old('payment_account_id') === (string) $a->id)>{{ $a->name }} ({{ ucfirst($a->type) }})</option>@endforeach
                     </select>
+                </div>
+                <div class="space-y-sm md:col-span-2">
+                    <label class="block text-label-sm font-bold text-on-surface-variant">Receipt (JPG/PNG/PDF)</label>
+                    <input name="receipt" type="file" accept=".jpg,.jpeg,.png,.pdf" class="w-full border border-outline-variant rounded-lg p-2 text-body-sm focus:ring-2 focus:ring-primary outline-none file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:bg-primary-container file:text-white">
+                    @error('receipt') <p class="text-body-sm text-error">{{ $message }}</p> @enderror
                 </div>
                 <div class="space-y-sm md:col-span-2">
                     <label class="block text-label-sm font-bold text-on-surface-variant">Description</label>

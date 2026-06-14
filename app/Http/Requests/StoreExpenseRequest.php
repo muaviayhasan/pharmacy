@@ -23,6 +23,7 @@ class StoreExpenseRequest extends FormRequest
             'tax' => ['nullable', 'numeric', 'min:0'],
             'payment_method' => ['required', 'in:cash,card,bank,cheque'],
             'payment_account_id' => ['nullable', 'integer', 'exists:accounts,id'],
+            'receipt' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:4096'],
         ];
     }
 }

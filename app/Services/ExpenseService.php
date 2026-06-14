@@ -8,6 +8,7 @@ use App\Models\Expense;
 use App\Models\LedgerEntry;
 use App\Models\PosShift;
 use App\Models\User;
+use App\Support\Audit;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -36,6 +37,7 @@ class ExpenseService
             'payment_method' => $data['payment_method'] ?? 'cash',
             'payment_account_id' => $data['payment_account_id'] ?? null,
             'related_shift_id' => $data['related_shift_id'] ?? null,
+            'attachment_path' => $data['attachment_path'] ?? null,
             'status' => 'active',
             'approval_status' => 'pending',
             'created_by' => $user->id,
@@ -106,7 +108,7 @@ class ExpenseService
 
             $expense->update(['approval_status' => 'approved', 'approved_by' => $approver->id]);
 
-            \App\Support\Audit::log('expenses', 'approve', "Approved expense {$expense->expense_no} (Rs. ".number_format($total, 2).')', [
+            Audit::log('expenses', 'approve', "Approved expense {$expense->expense_no} (Rs. ".number_format($total, 2).')', [
                 'reference' => $expense,
                 'risk' => 'medium',
             ]);

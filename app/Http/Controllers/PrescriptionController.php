@@ -59,9 +59,13 @@ class PrescriptionController extends Controller
             'doctor_registration_no' => ['nullable', 'string', 'max:100'],
             'clinic_name' => ['nullable', 'string', 'max:255'],
             'prescription_date' => ['nullable', 'date'],
-            'attachment_path' => ['nullable', 'string', 'max:255'],
+            'attachment' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:4096'],
             'notes' => ['nullable', 'string', 'max:1000'],
         ]);
+
+        if ($request->hasFile('attachment')) {
+            $data['attachment_path'] = $request->file('attachment')->store('prescriptions', 'public');
+        }
 
         $prescription = $service->create($data);
 

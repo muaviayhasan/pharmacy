@@ -44,7 +44,12 @@
                     @forelse ($expenses as $e)
                         <tr class="hover:bg-surface-container-low transition-colors">
                             <td class="px-md py-md text-body-sm">{{ $e->expense_date?->format('d M Y') }}</td>
-                            <td class="px-md py-md font-bold">{{ $e->expense_no }}</td>
+                            <td class="px-md py-md font-bold">
+                                {{ $e->expense_no }}
+                                @if ($e->attachment_path)
+                                    <a href="{{ \Illuminate\Support\Facades\Storage::url($e->attachment_path) }}" target="_blank" class="text-primary inline-flex align-middle ml-1" title="View receipt"><span class="material-symbols-outlined text-[16px]">attachment</span></a>
+                                @endif
+                            </td>
                             <td class="px-md py-md text-body-sm">{{ $e->category?->name ?? '—' }}</td>
                             <td class="px-md py-md text-body-sm">{{ $e->title }}<div class="text-[11px] text-outline uppercase">{{ $e->payment_method }}</div></td>
                             <td class="px-md py-md text-body-sm">{{ $e->branch?->name }}</td>

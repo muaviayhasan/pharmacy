@@ -35,7 +35,12 @@
                 <tbody class="divide-y divide-outline-variant">
                     @forelse ($prescriptions as $rx)
                         <tr class="hover:bg-surface-container-low transition-colors">
-                            <td class="px-md py-md font-bold">{{ $rx->prescription_no }}</td>
+                            <td class="px-md py-md font-bold">
+                                {{ $rx->prescription_no }}
+                                @if ($rx->attachment_path)
+                                    <a href="{{ \Illuminate\Support\Facades\Storage::url($rx->attachment_path) }}" target="_blank" class="text-primary inline-flex align-middle ml-1" title="View scan"><span class="material-symbols-outlined text-[16px]">attachment</span></a>
+                                @endif
+                            </td>
                             <td class="px-md py-md text-body-sm">{{ $rx->prescription_date?->format('d M Y') }}</td>
                             <td class="px-md py-md text-body-sm">{{ $rx->customer?->name ?? 'Walk-in' }}</td>
                             <td class="px-md py-md text-body-sm">{{ $rx->doctor_name ?? '—' }}<div class="text-[11px] text-outline">{{ $rx->clinic_name }}</div></td>
