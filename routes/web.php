@@ -50,6 +50,9 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     Route::get('/', fn () => redirect()->route('dashboard'));
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
+    // Point of Sale
+    Route::view('/pos', 'pos.index')->name('pos.index');
+
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
