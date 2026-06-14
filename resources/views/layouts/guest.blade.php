@@ -20,14 +20,14 @@
             <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary-fixed opacity-10 blur-3xl rounded-full"></div>
             <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-on-primary-container opacity-10 blur-3xl rounded-full"></div>
 
-            <div class="relative z-10 p-2xl max-w-xl text-on-primary">
+            <div class="relative z-10 p-2xl max-w-[36rem] text-on-primary">
                 <div class="flex items-center gap-sm mb-xl">
                     <span class="material-symbols-outlined text-primary-fixed text-4xl" style="font-variation-settings: 'FILL' 1;">medical_services</span>
                     <h1 class="text-headline-lg font-bold tracking-tight">{{ config('app.name', 'PharmaCore') }}</h1>
                 </div>
                 <div class="space-y-md">
                     <h2 class="text-headline-xl leading-tight">Clinical precision in every digital interaction.</h2>
-                    <p class="text-body-lg opacity-90 max-w-md">
+                    <p class="text-body-lg opacity-90 max-w-[28rem]">
                         Multi-factor authentication and audit-protected access keep sensitive pharmaceutical
                         data secure while keeping your team's workflow fast.
                     </p>
@@ -42,7 +42,7 @@
 
         {{-- Right: interaction panel --}}
         <section class="flex-1 flex items-center justify-center p-md lg:p-2xl bg-surface">
-            <div class="w-full max-w-md space-y-xl">
+            <div class="w-full max-w-[28rem] space-y-xl">
                 {{-- Mobile brand --}}
                 <div class="lg:hidden flex flex-col items-center gap-xs">
                     <div class="w-12 h-12 bg-primary flex items-center justify-center rounded-lg shadow-sm">

@@ -161,7 +161,7 @@
     {{-- Receipt / Payment modal --}}
     @if ($showModal)
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-md" wire:click.self="$set('showModal', false)">
-            <div class="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden">
+            <div class="bg-white rounded-xl shadow-2xl w-full max-w-[28rem] overflow-hidden">
                 <div class="px-lg py-md bg-surface-container-low border-b border-outline-variant flex items-center justify-between">
                     <h4 class="text-headline-md font-semibold">{{ $modalType === 'receipt' ? 'Customer Receipt' : 'Supplier Payment' }}</h4>
                     <button wire:click="$set('showModal', false)" class="text-outline hover:text-error"><span class="material-symbols-outlined">close</span></button>
