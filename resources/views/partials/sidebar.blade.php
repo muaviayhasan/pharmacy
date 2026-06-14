@@ -24,6 +24,7 @@
     ];
 
     $bottomNav = [
+        ['icon' => 'storefront', 'label' => 'Branches', 'route' => 'branches.index'],
         ['icon' => 'group', 'label' => 'Users', 'route' => 'users.index'],
         ['icon' => 'notifications_active', 'label' => 'Alerts', 'route' => 'alerts.index'],
         ['icon' => 'settings', 'label' => 'Settings', 'route' => 'settings.index'],
