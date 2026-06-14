@@ -62,6 +62,10 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     Route::post('/stock-adjustments/{stockAdjustment}/approve', [\App\Http\Controllers\StockAdjustmentController::class, 'approve'])->name('stock-adjustments.approve');
     Route::post('/stock-adjustments/{stockAdjustment}/reject', [\App\Http\Controllers\StockAdjustmentController::class, 'reject'])->name('stock-adjustments.reject');
 
+    // Expiry & Low Stock
+    Route::view('/expiry', 'inventory.expiry')->name('expiry.index');
+    Route::get('/low-stock', [\App\Http\Controllers\LowStockController::class, 'index'])->name('low-stock.index');
+
     // Stock Transfers
     Route::get('/stock-transfers', [\App\Http\Controllers\StockTransferController::class, 'index'])->name('stock-transfers.index');
     Route::view('/stock-transfers/create', 'stock-transfers.create')->name('stock-transfers.create');

@@ -11,6 +11,8 @@
         ['icon' => 'payments', 'label' => 'Sales', 'route' => 'sales.index'],
         ['icon' => 'swap_horiz', 'label' => 'Stock Transfers', 'route' => 'stock-transfers.index'],
         ['icon' => 'tune', 'label' => 'Stock Adjustments', 'route' => 'stock-adjustments.index'],
+        ['icon' => 'event_busy', 'label' => 'Expiry Management', 'route' => 'expiry.index'],
+        ['icon' => 'trending_down', 'label' => 'Low Stock / Reorder', 'route' => 'low-stock.index'],
         ['icon' => 'local_shipping', 'label' => 'Suppliers', 'route' => 'suppliers.index'],
         ['icon' => 'groups', 'label' => 'Customers', 'route' => 'customers.index'],
         ['icon' => 'account_balance_wallet', 'label' => 'Ledger', 'route' => 'ledger.index'],
