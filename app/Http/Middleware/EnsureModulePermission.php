@@ -43,6 +43,7 @@ class EnsureModulePermission
         'settings.' => 'view settings',
         'alerts.' => 'view alerts',
         'audit-logs.' => 'access audit logs',
+        'barcode.' => 'view barcode_management',
     ];
 
     public function handle(Request $request, Closure $next): Response

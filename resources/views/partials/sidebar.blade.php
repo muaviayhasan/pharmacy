@@ -11,6 +11,7 @@
         ['icon' => 'schedule', 'label' => 'Shift Management', 'route' => 'shifts.index', 'perm' => 'view shift_management'],
         ['icon' => 'inventory_2', 'label' => 'Inventory', 'route' => 'inventory.index', 'perm' => 'view inventory'],
         ['icon' => 'medication', 'label' => 'Medicines', 'route' => 'medicines.index', 'perm' => 'view medicines'],
+        ['icon' => 'barcode', 'label' => 'Barcode Labels', 'route' => 'barcode.index', 'perm' => 'view barcode_management'],
         ['icon' => 'shopping_cart', 'label' => 'Purchases', 'route' => 'purchases.index', 'perm' => 'view purchases'],
         ['icon' => 'payments', 'label' => 'Sales', 'route' => 'sales.index', 'perm' => 'view sales'],
         ['icon' => 'prescriptions', 'label' => 'Prescriptions', 'route' => 'prescriptions.index', 'perm' => 'view prescriptions'],

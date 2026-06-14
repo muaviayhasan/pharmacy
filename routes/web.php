@@ -112,6 +112,9 @@ Route::middleware(['auth', 'post.login', 'module.permission'])->group(function (
     // Ledger
     Route::view('/ledger', 'ledger.index')->name('ledger.index');
 
+    // Barcode Management
+    Route::view('/barcode', 'barcode.index')->name('barcode.index');
+
     // Audit Logs
     Route::get('/audit-logs', [\App\Http\Controllers\AuditLogController::class, 'index'])->name('audit-logs.index');
 
