@@ -27,7 +27,7 @@ class ExpiryManager extends Component
         return MedicineBatch::query()
             ->with('medicine', 'branch')
             ->where('available_quantity', '>', 0)
-            ->whereIn('status', ['in_stock', 'quarantined', 'near_expiry'])
+            ->whereIn('status', ['in_stock', 'quarantined', 'near_expiry', 'expired'])
             ->whereDate('expiry_date', '<=', now()->addDays(90))
             ->when($this->branchFilter !== '', fn ($q) => $q->where('branch_id', (int) $this->branchFilter))
             ->when($this->search !== '', fn ($q) => $q->whereHas('medicine', fn ($m) => $m->where('name', 'like', '%'.trim($this->search).'%')->orWhere('generic_name', 'like', '%'.trim($this->search).'%')));
