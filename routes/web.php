@@ -93,6 +93,14 @@ Route::middleware(['auth', 'post.login', 'module.permission'])->group(function (
     Route::get('/sales', [\App\Http\Controllers\SaleController::class, 'index'])->name('sales.index');
     Route::get('/sales/{sale}', [\App\Http\Controllers\SaleController::class, 'show'])->name('sales.show');
 
+    // Prescription Verification
+    Route::get('/prescriptions', [\App\Http\Controllers\PrescriptionController::class, 'index'])->name('prescriptions.index');
+    Route::get('/prescriptions/create', [\App\Http\Controllers\PrescriptionController::class, 'create'])->name('prescriptions.create');
+    Route::post('/prescriptions', [\App\Http\Controllers\PrescriptionController::class, 'store'])->name('prescriptions.store');
+    Route::post('/prescriptions/{prescription}/verify', [\App\Http\Controllers\PrescriptionController::class, 'verify'])->name('prescriptions.verify');
+    Route::post('/prescriptions/{prescription}/approve', [\App\Http\Controllers\PrescriptionController::class, 'approve'])->name('prescriptions.approve');
+    Route::post('/prescriptions/{prescription}/reject', [\App\Http\Controllers\PrescriptionController::class, 'reject'])->name('prescriptions.reject');
+
     // Sale Returns
     Route::get('/sale-returns', [\App\Http\Controllers\SaleReturnController::class, 'index'])->name('sale-returns.index');
     Route::view('/sale-returns/create', 'sale-returns.create')->name('sale-returns.create');

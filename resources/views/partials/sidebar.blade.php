@@ -13,6 +13,7 @@
         ['icon' => 'medication', 'label' => 'Medicines', 'route' => 'medicines.index', 'perm' => 'view medicines'],
         ['icon' => 'shopping_cart', 'label' => 'Purchases', 'route' => 'purchases.index', 'perm' => 'view purchases'],
         ['icon' => 'payments', 'label' => 'Sales', 'route' => 'sales.index', 'perm' => 'view sales'],
+        ['icon' => 'prescriptions', 'label' => 'Prescriptions', 'route' => 'prescriptions.index', 'perm' => 'view prescriptions'],
         ['icon' => 'assignment_return', 'label' => 'Sale Returns', 'route' => 'sale-returns.index', 'perm' => 'view sale_returns'],
         ['icon' => 'keyboard_return', 'label' => 'Purchase Returns', 'route' => 'purchase-returns.index', 'perm' => 'view purchase_returns'],
         ['icon' => 'swap_horiz', 'label' => 'Stock Transfers', 'route' => 'stock-transfers.index', 'perm' => 'view stock_transfers'],

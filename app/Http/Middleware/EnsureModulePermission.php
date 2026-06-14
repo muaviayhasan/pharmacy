@@ -31,6 +31,7 @@ class EnsureModulePermission
         'purchase-returns.' => 'view purchase_returns',
         'sales.' => 'view sales',
         'sale-returns.' => 'view sale_returns',
+        'prescriptions.' => 'view prescriptions',
         'customers.' => 'view customers',
         'suppliers.' => 'view suppliers',
         'branches.' => 'view branch_management',
