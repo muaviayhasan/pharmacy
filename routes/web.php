@@ -112,6 +112,12 @@ Route::middleware(['auth', 'post.login', 'module.permission'])->group(function (
     // Ledger
     Route::view('/ledger', 'ledger.index')->name('ledger.index');
 
+    // Alerts
+    Route::get('/alerts', [\App\Http\Controllers\AlertController::class, 'index'])->name('alerts.index');
+    Route::post('/alerts/generate', [\App\Http\Controllers\AlertController::class, 'generate'])->name('alerts.generate');
+    Route::post('/alerts/{alert}/resolve', [\App\Http\Controllers\AlertController::class, 'resolve'])->name('alerts.resolve');
+    Route::post('/alerts/{alert}/dismiss', [\App\Http\Controllers\AlertController::class, 'dismiss'])->name('alerts.dismiss');
+
     // Settings
     Route::get('/settings', [\App\Http\Controllers\SettingController::class, 'index'])->name('settings.index');
     Route::put('/settings', [\App\Http\Controllers\SettingController::class, 'update'])->name('settings.update');

@@ -41,6 +41,7 @@ class EnsureModulePermission
         'users.' => 'view user_management',
         'roles.' => 'view roles_permissions',
         'settings.' => 'view settings',
+        'alerts.' => 'view alerts',
     ];
 
     public function handle(Request $request, Closure $next): Response
