@@ -59,6 +59,7 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     // Purchases
     Route::get('/purchases', [\App\Http\Controllers\PurchaseController::class, 'index'])->name('purchases.index');
     Route::view('/purchases/create', 'purchases.create')->name('purchases.create');
+    Route::get('/purchases/{purchase}', [\App\Http\Controllers\PurchaseController::class, 'show'])->name('purchases.show');
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

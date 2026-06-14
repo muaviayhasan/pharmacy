@@ -69,6 +69,7 @@
                         <th class="px-md py-3 text-right">Paid</th>
                         <th class="px-md py-3 text-right">Due</th>
                         <th class="px-md py-3 text-center">Status</th>
+                        <th class="px-md py-3 text-right"></th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-outline-variant">
@@ -91,9 +92,14 @@
                                 @endphp
                                 <span class="px-2 py-0.5 {{ $badge }} rounded-full text-[10px] font-bold uppercase">{{ $p->payment_status }}</span>
                             </td>
+                            <td class="px-md py-md text-right">
+                                <a href="{{ route('purchases.show', $p) }}" class="inline-flex items-center gap-xs text-primary text-label-sm hover:underline" title="View invoice">
+                                    <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                </a>
+                            </td>
                         </tr>
                     @empty
-                        <tr><td colspan="8" class="px-md py-10 text-center text-outline">No purchase invoices yet. Click "New Purchase" to record one.</td></tr>
+                        <tr><td colspan="9" class="px-md py-10 text-center text-outline">No purchase invoices yet. Click "New Purchase" to record one.</td></tr>
                     @endforelse
                 </tbody>
             </table>

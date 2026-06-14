@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -49,6 +50,22 @@ class PurchaseController extends Controller
             'suppliers' => Supplier::orderBy('name')->get(),
             'stats' => $stats,
             'filters' => $request->only('search', 'supplier', 'status', 'from', 'to'),
+        ]);
+    }
+
+    public function show(Purchase $purchase)
+    {
+        $purchase->load('supplier', 'branch', 'creator', 'items.medicine');
+
+        $payments = Payment::where('direction', 'out')
+            ->where('supplier_id', $purchase->supplier_id)
+            ->where('reference_no', $purchase->purchase_no)
+            ->latest()
+            ->get();
+
+        return view('purchases.show', [
+            'purchase' => $purchase,
+            'payments' => $payments,
         ]);
     }
 }
