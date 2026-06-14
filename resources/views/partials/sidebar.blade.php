@@ -19,6 +19,7 @@
         ['icon' => 'local_shipping', 'label' => 'Suppliers', 'route' => 'suppliers.index'],
         ['icon' => 'groups', 'label' => 'Customers', 'route' => 'customers.index'],
         ['icon' => 'account_balance_wallet', 'label' => 'Ledger', 'route' => 'ledger.index'],
+        ['icon' => 'receipt_long', 'label' => 'Expenses', 'route' => 'expenses.index'],
         ['icon' => 'assessment', 'label' => 'Reports', 'route' => 'reports.index'],
     ];
 

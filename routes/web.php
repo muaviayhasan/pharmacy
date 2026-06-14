@@ -103,6 +103,13 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     // Ledger
     Route::view('/ledger', 'ledger.index')->name('ledger.index');
 
+    // Expenses
+    Route::get('/expenses', [\App\Http\Controllers\ExpenseController::class, 'index'])->name('expenses.index');
+    Route::get('/expenses/create', [\App\Http\Controllers\ExpenseController::class, 'create'])->name('expenses.create');
+    Route::post('/expenses', [\App\Http\Controllers\ExpenseController::class, 'store'])->name('expenses.store');
+    Route::post('/expenses/{expense}/approve', [\App\Http\Controllers\ExpenseController::class, 'approve'])->name('expenses.approve');
+    Route::post('/expenses/{expense}/reject', [\App\Http\Controllers\ExpenseController::class, 'reject'])->name('expenses.reject');
+
     // Purchases
     Route::get('/purchases', [\App\Http\Controllers\PurchaseController::class, 'index'])->name('purchases.index');
     Route::view('/purchases/create', 'purchases.create')->name('purchases.create');
