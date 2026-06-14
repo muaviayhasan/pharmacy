@@ -53,6 +53,9 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     // Point of Sale
     Route::view('/pos', 'pos.index')->name('pos.index');
 
+    // Medicines
+    Route::resource('medicines', \App\Http\Controllers\MedicineController::class);
+
     // Ledger
     Route::view('/ledger', 'ledger.index')->name('ledger.index');
 
