@@ -53,6 +53,9 @@ Route::middleware(['auth', 'post.login'])->group(function () {
     // Point of Sale
     Route::view('/pos', 'pos.index')->name('pos.index');
 
+    // Ledger
+    Route::view('/ledger', 'ledger.index')->name('ledger.index');
+
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

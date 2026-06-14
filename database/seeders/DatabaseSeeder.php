@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             SettingsSeeder::class,
             CatalogSeeder::class,
             StockSeeder::class,
+            LedgerSeeder::class,
         ]);
     }
 }
